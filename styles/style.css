@@ -1,0 +1,34 @@
+/*@import url(./reset.css);
+@import url(./fonts.css);
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul {
+  list-style: none;
+}*/
+
+.container {
+  max-width: 1270px;
+  margin: 0 auto;
+}
+
+.form {
+  display: block;
+}
+
+.list {
+  display: block;
+}
+
+.completed {
+  text-decoration: line-through;
+}
