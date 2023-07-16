@@ -3,16 +3,16 @@ const allTasks = JSON.parse(localStorage.getItem("allTask")) || [];
 
 // Add task
 function addTask() {
-  const inputValue = document.querySelector(".form__input").value;
+  let input = document.querySelector(".form__input");
 
-  if (inputValue.trim()) {
+  if (input.value.trim()) {
     const nextTask = {
       id: Date.now().toString(),
-      title: inputValue,
+      title: input.value,
       completed: false,
     };
-
     allTasks.push(nextTask);
+    input.value = "";
   }
 }
 
@@ -33,12 +33,27 @@ function completeTask(id) {
   const $item = document.getElementById(id);
 
   if ($item) {
-    const task = allTasks.find((item) => item.id === id);
-    //$item.classList.toggle('completed')
-    if (task.completed) {
-      $item.classList.add("completed");
-    } else {
-      $item.classList.remove("completed");
-    }
+    $item.classList.toggle("completed");
   }
+}
+
+// Render Tasks
+
+function renderTasks() {
+  let task = "";
+  allTasks.forEach((item) => {
+    task += `
+    <li class="list__item">
+       <span id = "${item.id}" class="item__text ${
+      item.completed ? "completed" : ""
+    }">${item.title}</span>
+       <input class="input-complete" data='${item.id}' ${
+      item.completed ? "checked" : ""
+    }
+     type="checkbox" />
+       <button class="delete-btn" data='${item.id}'>Delete</button>
+     </li>
+    `;
+  });
+  tasksList.innerHTML = task;
 }
